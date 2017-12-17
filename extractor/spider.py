@@ -159,6 +159,13 @@ class Spider(object):
                     self.browser.get(video_url)
                     time.sleep(8)
 
+                    while self.browser.find_elements_by_class_name('Message'):
+                        print "429: You have reached maximum request limit. " \
+                              "Sleeping for 15 minutes"
+                        time.sleep(15 * 60)
+                        self.browser.refresh()
+                        time.sleep(10)
+
                     if high_resolution:
                         resolution_button = self.browser.find_element_by_class_name("fm-vjs-quality")
                         resolution_button.click()
