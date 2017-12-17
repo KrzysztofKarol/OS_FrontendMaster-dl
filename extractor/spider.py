@@ -215,4 +215,4 @@ class Spider(object):
 
         file_path = os.path.join(course_path, format_filename(filename))
 
-        download_file(subsection['downloadable_url'], file_path, self)
+        download_file(subsection['downloadable_url'], file_path)

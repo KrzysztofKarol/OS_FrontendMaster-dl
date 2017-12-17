@@ -13,7 +13,7 @@ def format_filename(filename_str):
 def get_file_path_from_url(url):
     return url.split("?")[0].split(".")[-1]
 
-def download_file(url, path, self):
+def download_file(url, path):
     # FIXME(Xinyang): Better exception handling for empty url
     if url is None:
         return
@@ -21,10 +21,7 @@ def download_file(url, path, self):
         return
 
     if not os.path.isfile(path) or os.path.getsize(path) == 0:
-        self.browser.get(url)
-        temporaryURL = self.browser.current_url
-        self.browser.back()
-        buff = urlopen(temporaryURL)
+        buff = urlopen(url)
         print("Downloading: %s" % (path))
 
         with open(path, 'wb') as local_file:
